@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
       f.turbo_stream do
         return if @message.save
 
-        flash.now[:alert] = 'Message was not processed'
+        turbo_toast(type: 'alert', msg: t('.save_failed'))
         render status: :unprocessable_entity
       end
     end

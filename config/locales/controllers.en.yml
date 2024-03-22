@@ -1,0 +1,4 @@
+en:
+  messages:
+    create:
+      save_failed: 'Message was not processed'

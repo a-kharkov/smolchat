@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenameConversationsCreatorToOwner < ActiveRecord::Migration[7.1]
   def change
     remove_index :conversations, column: :creator_id

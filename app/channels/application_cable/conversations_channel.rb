@@ -5,6 +5,6 @@ class ConversationsChannel < ApplicationCable::Channel
 
   def subscribed
     stream_from "users:#{current_user.id}:conversations"
-    stream_from "users:#{current_user.id}:conversations:#{current_conversation&.id}"
+    stream_from "users:#{current_user.id}:conversations:#{@current_conversation.id}"
   end
 end

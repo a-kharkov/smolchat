@@ -1,0 +1,37 @@
+inherit_from: .rubocop_todo.yml
+require: rubocop-rails
+
+AllCops:
+  NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/NumericLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_perl_names
+
+Style/SymbolArray:
+  EnforcedStyle: percent
+
+Style/WordArray:
+  EnforcedStyle: percent
+
+Style/StringLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
+Rails/SkipsModelValidations:
+  AllowedMethods:
+    - touch
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/users/registrations_controller.rb'

@@ -4,11 +4,11 @@ class Conversation < ApplicationRecord
   belongs_to :owner, class_name: 'User', inverse_of: :owned_conversations
   has_many :users_conversations, dependent: :destroy
   has_many :users, through: :users_conversations
-  has_many :messages, -> { order(created_at: :asc) }, dependent: :destroy
+  has_many :messages, -> { order(created_at: :asc) }, inverse_of: :conversation, dependent: :destroy
 
   validates :name, presence: true, if: :group?
-  validates :users, length: { minimum: 1, message: 'must be selected' }, if: :group?
-  validates :users, length: { is: 2, message: 'must be selected' }, unless: :group?
+  validates :users, length: { minimum: 1, too_short: :blank }, if: :group?
+  validates :users, length: { is: 2, wrong_length: :blank }, unless: :group?
 
   after_update_commit :notify_update
 

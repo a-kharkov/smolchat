@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConversationPolicy < ApplicationPolicy
   def show?
     user.conversations.ids.include?(record.id)

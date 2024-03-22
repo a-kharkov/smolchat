@@ -9,8 +9,23 @@ class ConversationsController < ApplicationController
     set_conversations
   end
 
+  def show
+    return unless find_conversation
+
+    authorize @conversation
+    set_conversations
+    @messages = @conversation.messages.includes(:user)
+  end
+
   def new
     @conversation = Conversation.new(group: params[:group] == 'true')
+    set_users
+  end
+
+  def edit
+    return unless find_conversation
+
+    authorize @conversation
     set_users
   end
 
@@ -27,21 +42,6 @@ class ConversationsController < ApplicationController
         f.turbo_stream { render status: :unprocessable_entity }
       end
     end
-  end
-
-  def show
-    return unless find_conversation
-
-    authorize @conversation
-    set_conversations
-    @messages = @conversation.messages.includes(:user)
-  end
-
-  def edit
-    return unless find_conversation
-
-    authorize @conversation
-    set_users
   end
 
   def update
@@ -104,7 +104,7 @@ class ConversationsController < ApplicationController
       @users = User.where.not(id: current_user.id).order(updated_at: :desc)
     else
       private_conv_ids = Conversation.joins(:users)
-                                     .where('users_conversations.user_id = ?', current_user.id)
+                                     .where(users_conversations: { user_id: current_user.id })
                                      .where(group: false)
                                      .ids
       excluded_user_ids = User.joins(:conversations).distinct

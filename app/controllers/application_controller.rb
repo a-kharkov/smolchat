@@ -21,13 +21,18 @@ class ApplicationController < ActionController::Base
     policy_name = exception.policy.class.to_s.underscore
     message = t exception.query.to_s, scope: "pundit.#{policy_name}", default: :default
     respond_to do |f|
-      f.html { flash[:alert] = message }
-      f.turbo_stream { turbo_toast(type: 'alert', msg: message) }
+      f.html do
+        flash[:alert] = message
+        redirect_to root_path
+      end
+      f.turbo_stream do
+        turbo_toast(type: 'alert', msg: message)
+        redirect_to root_path
+      end
     end
-    redirect_to root_path
   end
 
-  def use_cookies_timezone(&action)
-    Time.use_zone(cookies.fetch(:timezone, nil), &action)
+  def use_cookies_timezone(&)
+    Time.use_zone(cookies.fetch(:timezone, nil), &)
   end
 end

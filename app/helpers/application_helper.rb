@@ -9,8 +9,4 @@ module ApplicationHelper
              end
     datetime.strftime(format)
   end
-
-  def current_conversation
-    defined?(@conversation) ? @conversation : nil
-  end
 end
