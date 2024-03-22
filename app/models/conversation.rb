@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: conversations
+#
+#  id         :bigint           not null, primary key
+#  group      :boolean
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  owner_id   :bigint
+#
+# Foreign Keys
+#
+#  fk_rails_...  (owner_id => users.id)
+#
 class Conversation < ApplicationRecord
   belongs_to :owner, class_name: 'User', inverse_of: :owned_conversations
   has_many :users_conversations, dependent: :destroy

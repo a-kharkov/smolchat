@@ -16,6 +16,7 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Exclude:
     - 'config/**/*'
+    - 'lib/tasks/**/*'
 
 Style/Documentation:
   Enabled: false
