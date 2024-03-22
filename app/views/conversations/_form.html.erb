@@ -1,0 +1,53 @@
+<% if policy(@conversation).destroy? %>
+  <%= form_with url: conversation_path(@conversation), method: :delete,
+                id: "delete_conversation_#{@conversation.id}",
+                class: "visually-hidden",
+                data: { turbo_frame: :main_content, turbo_action: :advance } do %>
+  <% end %>
+<% end %>
+<%= form_for @conversation, method: @conversation.persisted? ? :patch : :post,
+             data: { turbo_frame: :main_content, turbo_action: :advance } do |f| %>
+
+  <%= f.hidden_field :group, value: @conversation.group? %>
+  <%= f.hidden_field :owner_id, value: current_user.id %>
+
+  <% if @conversation.group? %>
+    <div class="m-3">
+      <%= f.label :name, 'Group name', class: "form-label text-primary-emphasis" %>
+      <%= f.text_field :name, class: "form-control" %>
+      <%- if @conversation.errors.messages_for(:name).any? %>
+        <div class="invalid-feedback d-block">
+          <%= @conversation.errors.full_messages_for(:name).first %>
+        </div>
+      <%- end %>
+    </div>
+  <% end %>
+
+  <div class="my-3">
+    <p class="mx-3 mb-1 text-primary-emphasis"><%= @conversation.group? ? 'Add members' : 'Select user' %></p>
+    <%= check_box_tag 'conversation[user_ids][]', id: "user_id_#{current_user.id}", checked: true, value: current_user.id, hidden: true %>
+    <div class="list-group rounded-0" data-controller="subtle-checklist" data-subtle-checklist-multiple-value="<%= @conversation.group? ? 'true' : 'false' %>">
+      <%= render @users, f: f %>
+    </div>
+    <%- if @conversation.errors.messages_for(:users).any? %>
+      <div class="ms-3 invalid-feedback d-block">
+        <%= @conversation.errors.full_messages_for(:users).first %>
+      </div>
+    <%- end %>
+  </div>
+
+  <div class="d-flex justify-content-between m-3">
+    <div>
+      <% if policy(@conversation).destroy? %>
+        <%= button_tag 'Delete', form: "delete_conversation_#{@conversation.id}",
+                       class: "btn btn-default text-danger-emphasis",
+                       data: { turbo_confirm: 'Are you sure?', turbo_frame: :main_content } %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to 'Cancel', :back, class: "btn btn-default text-primary-emphasis" %>
+      <%= f.button @conversation.persisted? ? 'Update' : 'Create', class: "btn btn-default text-primary-emphasis" %>
+    </div>
+  </div>
+
+<% end %>

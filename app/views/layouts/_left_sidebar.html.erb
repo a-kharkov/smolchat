@@ -1,0 +1,15 @@
+<div class="col-4 border-end border-dark-subtle d-flex flex-column h-100">
+  <header class="flex-grow-0 flex-shrink-0 d-flex w-100 justify-content-between align-items-center ps-1 pe-4 h-70px">
+    <button id="main-menu" class="btn btn-default mx-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bsMainMenuOffcanvas" aria-controls="bsMainMenuOffcanvas">
+      <i class="bi bi-list"></i>
+    </button>
+    <label for="search-conversations" class="visually-hidden">Search conversations</label>
+    <input id="search-conversations" type="text" class="form-control" placeholder="Search">
+  </header>
+  <%= turbo_stream_from "users:#{current_user.id}:conversations" %>
+  <div class="flex-grow-1 flex-shrink-1 list-group rounded-0 overflow-y-auto">
+    <%= turbo_frame_tag :conversations do %>
+      <%= render @conversations, current_user_id: current_user.id %>
+    <% end %>
+  </div>
+</div>

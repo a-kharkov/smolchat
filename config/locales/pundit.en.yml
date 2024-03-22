@@ -1,0 +1,7 @@
+en:
+  pundit:
+    default: "You can't perform this action"
+    conversation_policy:
+      default: "Conversation not found"
+      update?: "You can't update this conversation"
+      destroy?: "You can't delete this conversation"

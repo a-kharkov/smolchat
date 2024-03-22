@@ -1,0 +1,13 @@
+<div id="new_message_container" class="flex-grow-0">
+  <%= form_with url: conversation_messages_path(@conversation), class: "d-flex align-items-center",
+               data: {
+                 method: :post,
+                 chat_target: "newMessageForm"
+               } do |f| %>
+    <%= f.text_area 'message[text]', rows: 1, class: "form-control subtle-textarea", placeholder: "Write a message...",
+                    data: {
+                      controller: "expandable-textarea",
+                      action: "input->expandable-textarea#resize keydown->chat#newlineOrSubmit"
+                    } %>
+  <% end %>
+</div>

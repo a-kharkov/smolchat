@@ -1,0 +1,12 @@
+<div data-controller="chat" class="d-flex flex-column h-100">
+  <%= turbo_stream_from "users:#{current_user.id}:conversations:#{@conversation.id}"  %>
+  <%= render 'conversations/header', conversation: @conversation %>
+  <div class="flex-shrink-1 flex-grow-1 bg-dark-subtle px-3 pt-5 pb-3 overflow-y-auto">
+    <div id="messages_container" class="d-flex flex-column justify-content-end" style="min-height: 100%;">
+      <%= render @messages, current_user_id: current_user.id, conversation: @conversation %>
+    </div>
+  </div>
+  <div class="flex-shrink-0 flex-grow-0 overflow-y-auto p-2 border-top border-dark-subtle">
+    <%= render 'messages/new' %>
+  </div>
+</div>

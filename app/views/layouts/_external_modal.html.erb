@@ -1,0 +1,14 @@
+<%= turbo_frame_tag :external_modal do %>
+  <div class="modal fade" tabindex="-1"
+       data-action="turbo:before-frame-render@document->external-modal#hideBeforeRender"
+       data-controller="external-modal"
+       data-external-modal-bootstrap-interactions-outlet="#jsBootstrapOutlet">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div id="external_modal_body" class="modal-body p-0">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

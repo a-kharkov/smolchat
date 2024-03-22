@@ -1,0 +1,19 @@
+<%- msg = { body: msg } if msg.is_a?(String) %>
+<div class="toast border-0 mb-2" role="alert"
+     data-action="hidden.bs.toast->toasts#remove"
+     data-controller="toasts">
+  <div class="alert <%= flash_css_variant(type) %> m-0 rounded-1">
+    <% if msg[:header] %>
+      <header class="alert-header d-flex align-items-center justify-content-between">
+        <strong class="fs-6"><%= msg[:header] %></strong>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="toast"></button>
+      </header>
+      <div class="alert-body"><%= msg[:body] %></div>
+    <% else %>
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="alert-body"><%= msg[:body] %></div>
+        <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="toast"></button>
+      </div>
+    <% end %>
+  </div>
+</div>

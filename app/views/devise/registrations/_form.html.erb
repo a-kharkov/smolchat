@@ -1,0 +1,90 @@
+<div id="devise_user_form" class="d-flex h-100 justify-content-center align-items-center">
+  <div class="<%= resource.persisted? ? 'my-3' : 'col-4' %>">
+    <div class="d-flex justify-content-center mb-3">
+      <h2><%= resource.persisted? ? "Edit #{resource_name.to_s.humanize}" : 'Sign Up' %></h2>
+    </div>
+
+    <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: resource.persisted? ? :put : :post } do |f| %>
+      <div class="mb-3">
+        <%= f.label :name, class: 'visually-hidden' %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "username", placeholder: 'Name', class: "form-control" %>
+        <%- if resource.errors.messages_for(:name).any? %>
+          <div class="invalid-feedback d-block">
+            <%= resource.errors.full_messages_for(:name).first %>
+          </div>
+        <%- end %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :email, class: 'visually-hidden' %>
+        <%= f.text_field :email, autocomplete: "email", placeholder: 'E-mail', class: "form-control" %>
+        <%- if resource.errors.messages_for(:email).any? %>
+          <div class="invalid-feedback d-block">
+            <%= resource.errors.full_messages_for(:email).first %>
+          </div>
+        <%- end %>
+      </div>
+
+      <% if resource.persisted? && devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= f.label :password, class: 'visually-hidden' %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password (leave blank to keep)', class: "form-control" %>
+        <%- if resource.errors.messages_for(:password).any? %>
+          <div class="invalid-feedback d-block">
+            <%= resource.errors.full_messages_for(:password).first %>
+          </div>
+        <%- end %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password_confirmation, class: 'visually-hidden' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Password Confirmation', class: "form-control" %>
+        <%- if resource.errors.messages_for(:password_confirmation).any? %>
+          <div class="invalid-feedback d-block">
+            <%= resource.errors.full_messages_for(:password_confirmation).first %>
+          </div>
+        <%- end %>
+      </div>
+
+      <% if resource.persisted? %>
+        <div class="mb-3">
+          <%= f.label :current_password, class: 'visually-hidden' %>
+          <%= f.password_field :current_password, autocomplete: "current-password", placeholder: 'Current password', class: "form-control" %>
+          <%- if resource.errors.messages_for(:current_password).any? %>
+            <div class="invalid-feedback d-block">
+              <%= resource.errors.full_messages_for(:current_password).first %>
+            </div>
+          <%- end %>
+        </div>
+
+        <div class="d-flex mb-3 mt-4">
+          <%= f.button "Update", class: 'btn btn-primary w-100' %>
+        </div>
+
+        <div class="d-flex mb-3">
+          <%= link_to "Back", :back, class: 'btn btn-default text-body w-100' %>
+        </div>
+      <% else %>
+        <div class="d-flex mb-3 mt-4">
+          <%= f.button "Sign Up", class: 'btn btn-primary w-100' %>
+        </div>
+      <% end %>
+
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+
+    <% if resource.persisted? %>
+      <a class="fw-light link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-50-hover mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#cancelAccountCollapse">
+        <small>Unhappy?</small>
+      </a>
+      <div id="cancelAccountCollapse" class="collapse">
+        <%= button_to "Cancel my account", registration_path(resource_name), class: 'btn btn-danger w-100 mt-3',
+                      data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+      </div>
+    <% end %>
+  </div>
+</div>

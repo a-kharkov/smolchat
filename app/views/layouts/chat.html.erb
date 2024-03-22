@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en" data-controller="dark-mode" data-bs-theme="<%= current_theme %>">
+<head>
+  <title>Smolchat</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+</head>
+
+<body class="h-100">
+<main id="jsBootstrapOutlet" class="h-100 position-relative" data-controller="tz bootstrap-interactions">
+  <div class="row h-100 gx-0 align-items-stretch">
+    <%= render 'layouts/left_offcanvas' %>
+    <%= render 'layouts/left_sidebar' %>
+    <div class="col mh-100">
+      <%= turbo_frame_tag :main_content, class: "h-100" do %>
+        <%= yield %>
+      <% end %>
+    </div>
+  </div>
+  <%= turbo_stream_from "users:#{current_user.id}:notifications" if signed_in? %>
+  <div id="toast_container" class="toast-container top-0 end-0 p-3">
+    <%= render 'layouts/toasts' %>
+  </div>
+  <%= turbo_frame_tag :external_modal %>
+</main>
+</body>
+</html>

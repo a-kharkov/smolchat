@@ -1,0 +1,15 @@
+<%= turbo_frame_tag :conversation_header do %>
+  <header class="h-70px d-flex justify-content-between align-items-center px-3 border-bottom border-dark-subtle">
+    <div class="col my-0">
+      <%= render 'conversations/conversation_info', conversation: conversation, user: current_user %>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-lg btn-default">
+        <i class="bi bi-search"></i>
+      </button>
+      <button class="btn btn-lg btn-default">
+        <i class="bi bi-three-dots-vertical"></i>
+      </button>
+    </div>
+  </header>
+<% end %>

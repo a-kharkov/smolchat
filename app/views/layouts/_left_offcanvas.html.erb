@@ -1,0 +1,35 @@
+<div class="offcanvas offcanvas-start d-flex flex-column" tabindex="-1" id="bsMainMenuOffcanvas">
+  <%= turbo_stream_from "users:#{current_user.id}:account" %>
+  <turbo-frame id="left_offcanvas_header" class="d-flex justify-content-between align-items-center ps-3 py-2 mb-2 border-bottom">
+    <%= render 'layouts/left_offcanvas/header' %>
+  </turbo-frame>
+  <div class="flex-grow-1">
+    <div class="list-group rounded-0">
+      <%= turbo_frame_tag :external_modal_link, target: :external_modal do %>
+        <%= link_to new_conversation_path(group: false), class: "list-group-item list-group-item-action border-0" do %>
+          <i class="bi bi-person-fill-add pe-2"></i>New direct
+        <% end %>
+      <% end %>
+      <%= turbo_frame_tag :external_modal_link, target: :external_modal do %>
+        <%= link_to new_conversation_path(group: true), class: "list-group-item list-group-item-action border-0" do %>
+          <i class="bi bi-people-fill pe-2"></i>New group
+        <% end %>
+      <% end %>
+      <div class="list-group-item list-group-item-action border-0">
+        <div class="form-check form-switch form-check-reverse text-start">
+          <label class="form-check-label stretched-link" for="darkModeSwitch" role="button">
+            <i class="bi bi-moon-stars-fill pe-2"></i>Dark mode
+          </label>
+          <%= check_box_tag 'darkModeSwitch', '1', dark_mode?, class: 'form-check-input', role: 'switch',
+                            data: { action: "change->dark-mode#toggle" }
+          %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-3 text-center">
+    <a href="/" class="link-underline link-underline-opacity-0">
+      <span class="text-body-tertiary fw-bold">Smolchat</span>
+    </a>
+  </div>
+</div>

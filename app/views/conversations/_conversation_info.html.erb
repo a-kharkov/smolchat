@@ -1,0 +1,41 @@
+<%= turbo_frame_tag :conversation_info do %>
+  <% if Pundit.policy!(user, conversation).update? %>
+    <%= link_to edit_conversation_path(conversation), class: "h-100 w-100 py-2 link-underline link-underline-opacity-0",
+                data: {
+                  turbo_frame: :external_modal,
+                  action: "click->external-modal#show"
+                } do %>
+      <% if conversation.group? %>
+        <div>
+          <span class="fw-bold text-body"><%= conversation.name %></span>
+        </div>
+        <div>
+          <small class="text-secondary"><%= pluralize conversation.users.count, 'member' %></small>
+        </div>
+      <% else %>
+        <div>
+          <span class="fw-bold text-body"><%= conversation.users.where.not(id: user.id).first.name %></span>
+        </div>
+        <div>
+          <small class="text-secondary">Last seen <%= time_ago_in_words(user.updated_at) %> ago</small>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% if conversation.group? %>
+      <div>
+        <span class="fw-bold text-body"><%= conversation.name %></span>
+      </div>
+      <div>
+        <small class="text-secondary"><%= pluralize conversation.users.count, 'member' %></small>
+      </div>
+    <% else %>
+      <div>
+        <span class="fw-bold text-body"><%= conversation.users.where.not(id: user.id).first.name %></span>
+      </div>
+      <div>
+        <small class="text-secondary">Last seen <%= time_ago_in_words(user.updated_at) %> ago</small>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

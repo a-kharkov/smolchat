@@ -1,0 +1,2 @@
+web: bin/rails s -b "ssl://0.0.0.0?key=/rails/dev_certs/localhost.key&cert=/rails/dev_certs/localhost.crt"
+js: bun run build --watch

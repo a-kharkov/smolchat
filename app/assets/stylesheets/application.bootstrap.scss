@@ -1,0 +1,40 @@
+$offcanvas-horizontal-width: 300px;
+$input-placeholder-color: var(--bs-tertiary-color);
+$btn-close-focus-shadow: 0;
+
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+.h-70px {
+  height: 70px;
+}
+
+.btn-default {
+  --bs-btn-color: var(--bs-tertiary-color);
+  --bs-btn-bg: var(--bs-body-bg);
+  --bs-btn-hover-color: var(--bs-secondary-color);
+  --bs-btn-hover-bg: var(--bs-tertiary-bg);
+  --bs-btn-focus-shadow-rgb: var(--bs-tertiary-bg);
+  --bs-btn-active-color: var(--bs-body-color);
+  --bs-btn-active-bg: var(--bs-secondary-bg);
+  border: none;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
+.card.message-card {
+  --bs-card-spacer-y: .5rem !important;
+  width: 85%;
+  max-width: 400px;
+}
+
+textarea.subtle-textarea {
+  border: 0;
+  border-radius: 0;
+  resize: none;
+  &:focus {
+    box-shadow: none;
+  }
+}
