@@ -40,5 +40,6 @@ end
 group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 6.0'
   gem 'simplecov', require: false
 end

@@ -29,7 +29,7 @@ class User < ApplicationRecord
   has_many :users_conversations, dependent: :destroy
   has_many :conversations, through: :users_conversations
 
-  after_update :notify_update
+  after_update_commit :notify_update
 
   private
 

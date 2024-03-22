@@ -45,3 +45,6 @@ Rails/SkipsModelValidations:
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'
+
+RSpec/NestedGroups:
+  MaxNesting: 5
