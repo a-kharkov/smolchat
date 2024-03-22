@@ -23,10 +23,18 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
+  gem 'factory_bot_rails', '~> 6.4.3'
+  gem 'rspec-rails', '~> 6.1.0'
 end
 
 group :development do
   gem 'rubocop', require: false
+  gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
   gem 'web-console'
+end
+
+group :test do
+  gem 'simplecov', require: false
 end
