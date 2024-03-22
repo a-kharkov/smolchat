@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def handle_unauthorized(exception)
     policy_name = exception.policy.class.to_s.underscore
-    message = t exception.query.to_s, scope: "pundit.#{policy_name}", default: :default
+    message = t(exception.query.to_s, scope: "pundit.#{policy_name}", default: :default)
     respond_to do |f|
       f.html do
         flash[:alert] = message

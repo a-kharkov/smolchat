@@ -4,6 +4,12 @@ require: rubocop-rails
 AllCops:
   NewCops: enable
 
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/MethodLength:
+  Max: 15
+
 Metrics/BlockLength:
   Exclude:
     - 'config/**/*'
