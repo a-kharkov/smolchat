@@ -7,7 +7,11 @@
 1. Get Docker
 2. Clone repo
 3. `docker compose run --rm app bin/rails db:prepare`
-4. `docker compose run --rm app bun run build:css`
+4. `docker compose run --rm app bash`
+  1. `bun install && bun run build:css`
+6. `docker compose run --rm app bun run build:css`
    * `nodemon` refused to cooperate, so CSS has to be built manually
-5. Optional: specify port in `/.env`, e.g. `PORT=3002` (default: 3000)
-6. `docker compose up`
+   * I don't have any idea why `bun` doesn't see packages if it's run first time with Docker
+   * Bun things, I guess
+7. Optional: specify port in `/.env`, e.g. `PORT=3002` (default: 3000)
+8. `docker compose up`
