@@ -8,7 +8,7 @@
 2. Clone repo
 3. `docker compose run --rm app bin/rails db:prepare`
 4. `docker compose run --rm app bash`
-  1. `bun install && bun run build:css`
+   *. `bun install && bun run build:css`
 6. `docker compose run --rm app bun run build:css`
    * `nodemon` refused to cooperate, so CSS has to be built manually
    * I don't have any idea why `bun` doesn't see packages if it's run first time with Docker
