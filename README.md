@@ -12,5 +12,5 @@
 5. _(Optional)_ Specify port in `/.env`, e.g. `PORT=3002` (default: 3000)
 6. `docker compose up`
 7. _(Optional)_ Run specs
-   - Unit tests: `docker compose exec app bundle exec rspec`
-   - Feature tests: `docker compose exec -e test app bundle exec cucumber`
+   - Unit tests: `docker compose exec -e RAILS_ENV=test app bundle exec rspec`
+   - Feature tests: `docker compose exec -e RAILS_ENV=test app bundle exec cucumber`

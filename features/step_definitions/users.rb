@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 When(/^user registers as name "([^"]*)", email "([^"]*)", password "([^"]*)" and password confirmation "([^"]*)"$/) do |name, email, password, pw_conf|
   step %(user visits "/users/sign_up")
   step %(user inputs "#{name}" into "user_name" field)

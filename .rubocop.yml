@@ -31,6 +31,10 @@ Rails/SkipsModelValidations:
   AllowedMethods:
     - touch
 
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/requests/**/*'
+
 RSpec/MultipleExpectations:
   Exclude:
     - 'spec/requests/**/*'
