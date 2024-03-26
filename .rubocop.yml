@@ -1,5 +1,6 @@
 inherit_from: .rubocop_todo.yml
 require:
+  - rubocop-capybara
   - rubocop-factory_bot
   - rubocop-rails
   - rubocop-rspec
@@ -47,4 +48,4 @@ Rails/LexicallyScopedActionFilter:
     - 'app/controllers/users/registrations_controller.rb'
 
 RSpec/NestedGroups:
-  MaxNesting: 5
+  Max: 5
