@@ -1,11 +1,16 @@
 inherit_from: .rubocop_todo.yml
 require:
+  - rubocop-capybara
   - rubocop-factory_bot
   - rubocop-rails
   - rubocop-rspec
 
 AllCops:
   NewCops: enable
+
+Layout/LineLength:
+  Exclude:
+    - 'features/step_definitions/**/*'
 
 Metrics/AbcSize:
   Max: 25
@@ -18,6 +23,25 @@ Metrics/BlockLength:
     - 'config/**/*'
     - 'lib/tasks/**/*'
 
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - 'app/controllers/users/registrations_controller.rb'
+
+Rails/SkipsModelValidations:
+  AllowedMethods:
+    - touch
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/requests/**/*'
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/requests/**/*'
+
+RSpec/NestedGroups:
+  Max: 5
+
 Style/Documentation:
   Enabled: false
 
@@ -28,23 +52,12 @@ Style/NumericLiterals:
 Style/SpecialGlobalVars:
   EnforcedStyle: use_perl_names
 
+Style/StringLiterals:
+  Exclude:
+    - 'db/schema.rb'
+
 Style/SymbolArray:
   EnforcedStyle: percent
 
 Style/WordArray:
   EnforcedStyle: percent
-
-Style/StringLiterals:
-  Exclude:
-    - 'db/schema.rb'
-
-Rails/SkipsModelValidations:
-  AllowedMethods:
-    - touch
-
-Rails/LexicallyScopedActionFilter:
-  Exclude:
-    - 'app/controllers/users/registrations_controller.rb'
-
-RSpec/NestedGroups:
-  MaxNesting: 5

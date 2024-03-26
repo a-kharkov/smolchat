@@ -31,6 +31,7 @@ end
 group :development do
   gem 'annotate', '~> 3.2.0'
   gem 'rubocop', require: false
+  gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -38,8 +39,11 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 6.0'
   gem 'simplecov', require: false
 end

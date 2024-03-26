@@ -34,7 +34,7 @@ export default class extends Controller {
     if (prevEl?.dataset?.userId !== el.dataset.userId) {
       el.classList.add('mt-2')
       if (el.classList.contains('me-auto'))
-        el.querySelector('header').classList.remove('d-none')
+        el.querySelector('header')?.classList?.remove('d-none')
     }
   }
 }
